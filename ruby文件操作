@@ -1,4 +1,3 @@
-```ruby
 "r" ：Read-only. Starts at beginning of file (default mode).
 "r+" ：Read-write. Starts at beginning of file.
 "w" ：Write-only. Truncates existing file to zero length or creates a new file for writing.
@@ -8,10 +7,12 @@
 "b" ：(DOS/Windows only.) Binary file mode. May appear with any of the key letters listed above
 
 1.新建文件+写入
+```ruby
 f=File.new(File.join(".","222.txt"),"w+")
 f.puts("i am syf.")
 f.puts("Hello world.")
 f.close
+```
 
 2.读取文件
 f=File.open(File.join(".","222.txt"),"r")
@@ -73,7 +74,3 @@ irb(main):001:0> File.ftype("3333")
 => "directory"
 irb(main):019:0> File.ftype("3.rb")
 => "file"
-
-
-
-```
