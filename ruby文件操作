@@ -1,0 +1,78 @@
+ruby```
+"r" ：Read-only. Starts at beginning of file (default mode).
+"r+" ：Read-write. Starts at beginning of file.
+"w" ：Write-only. Truncates existing file to zero length or creates a new file for writing.
+"w+" ：Read-write. Truncates existing file to zero length or creates a new file for reading and writing.
+"a" ：Write-only. Starts at end of file if file exists; otherwise, creates a new file for writing.
+"a+" ：Read-write. Starts at end of file if file exists; otherwise, creates a new file for reading and writing.
+"b" ：(DOS/Windows only.) Binary file mode. May appear with any of the key letters listed above
+```
+1.新建文件+写入
+f=File.new(File.join(".","222.txt"),"w+")
+f.puts("i am syf.")
+f.puts("Hello world.")
+f.close
+
+2.读取文件
+f=File.open(File.join(".","222.txt"),"r")
+ f.each { |line| print "#{f.lineno}.", line }
+f.close
+
+3.新建、重命名文件、删除
+File.new("books.txt","w")
+File.rename("books.txt","123.txt")
+File.delete("123.txt")
+二.目录操作
+1.创建目录
+Dir.mkdir("3333")
+2.删除目录
+Dir.rmdir("3333")
+3.查询目录里的文件
+p Dir.entries(File.join("C:","Ruby")).join(' ') 
+4.遍历目录
+Dir.entries(File.join("C:","Ruby")).each {
+    |e| puts e
+    }
+
+1、ARGV and ARGF
+ARGV
+    ARGV << "cnblogslink.txt"
+    #The gets method is a Kernel method that gets lines from ARGV
+    print while gets
+    p ARGV.class
+
+ARGF
+    while line = ARGF.gets
+     print line
+    end
+三.文件信息查询
+1.文件是否存在
+irb(main):001:0> File::exists?("3.rb")
+=> true
+2.文件是否是文件
+irb(main):001:0> File.file?("3.rb")
+=> true
+3.是否是目录
+irb(main):002:0> File::directory?( "/ruby" )
+=> true
+4.文件权限
+irb(main):010:0> File.readable?("3.rb")
+=> true
+irb(main):011:0> File.writable?("3.rb")
+=> true
+irb(main):012:0> File.executable?("3.rb")
+=> false
+5.是否是零长度
+irb(main):013:0> File.zero?("3.rb")
+=> false
+6.文件大小 bytes
+irb(main):014:0> File.size?("3.rb")
+=> 110
+7.文件或文件夹
+irb(main):001:0> File.ftype("3333")
+=> "directory"
+irb(main):019:0> File.ftype("3.rb")
+=> "file"
+
+
+
