@@ -73,3 +73,50 @@ irb(main):001:0> File.ftype("3333")
 => "directory"
 irb(main):019:0> File.ftype("3.rb")
 => "file"
+8.文件创建、修改、最后一次存取时间
+irb(main):004:0> File::ctime("001.rb")
+=> 2016-05-03 22:51:12 +0800
+irb(main):005:0> File::mtime("001.rb")
+=> 2016-05-03 22:51:12 +0800
+irb(main):001:0> File::atime("001.rb")
+=> 2016-06-14 16:09:25 +0800
+9.遍历目录下所有文件及文件夹 [子目录下不算]
+[root@redmine ruby]# cat 006.rb 
+# -*- coding: UTF-8 -*-
+puts "超找目录下所有文件及文件夹"
+Dir["/ruby/*"].each { |x|
+ puts x
+}
+10.条件查询
+puts "条件查询"
+Dir.foreach('/ruby/test1') { |x| 
+ puts x if x !="." && x !=".."
+ }
+11.查找某一类型文件 （正则）
+puts "查找某一类型文件"
+Dir["*.rb"].each {|x| 
+      puts x
+     }
+12.遍历/ruby目录下所有文件，文件名字含有00的文件
+# -*- coding: UTF-8 -*-
+puts "open 查询"
+Dir.open('/ruby') { |d| d.grep /00/ }.each { |x| 
+ puts x 
+}
+13.正则表达式查询 遍历包含12的文件名
+# -*- coding: UTF-8 -*-
+puts "正则表达式查询"
+Dir["/ruby/[12]*"].each{ |x| 
+ puts x
+}
+遍历目录以ex开头的
+Dir["[^ex]*"].each{ |x| puts x }
+遍历目录00和123的文件名
+Dir["/ruby/{00,123}*"].each{ |x| puts x }
+遍历文件第二个字母为x的文件
+Dir["/ruby/?x*"].each{ |x| puts x }
+14.遍历当前目录及子目录所有文件
+require 'find'
+Find.find ('./') { |path| puts path }
+15.查询目录及子目录文件
+
