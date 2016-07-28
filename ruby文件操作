@@ -119,4 +119,10 @@ Dir["/ruby/?x*"].each{ |x| puts x }
 require 'find'
 Find.find ('./') { |path| puts path }
 15.查询目录及子目录文件
+require "find"
+Find.find("/etc/passwd",".") do |f|
+ Find.prune if f == "."
+puts f
+end
+
 
