@@ -1,0 +1,16 @@
+#!/usr/bin/ruby
+#require "./grep.rb"                #调用rb #可以不加.rb
+pattern = Regexp.new(ARGV[0])       #需要搜索的变量
+filename = ARGV[1]                  #需要搜索的文件
+
+ def simple_grep(pattern,filename)  #定义方法
+  file=File.open(filename)          #打开文件
+    file.each_line do |line|        #each_line逐行搜索，不会一下读取全部
+      if pattern =~ line            #匹配
+        puts line                  
+      end
+    end
+ file.close                         #关闭文件
+ end
+
+simple_grep(pattern, filename)      #调用方法

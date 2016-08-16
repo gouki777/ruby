@@ -1,0 +1,7 @@
+#!/usr/bin/ruby
+def sum(a1="Ruby", a2="shell")
+        puts "this is langueage is #{a1}"
+        puts "this is langueage is #{a2}"
+end
+sum "123", "456"
+sum
