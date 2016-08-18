@@ -1,0 +1,793 @@
+Ruby：面向对象、开源、动态类型、强类型、解释型的脚本语言。
+（1）注释Comment 
+print "Hello world\n" # 单行注释  
+  =begin  
+↑多行注释 第一行  
+↓多行注释 第二行  
+=end  
+
+（2）分隔符Separator 
+print "abc"; print "def" # ';' 为分隔符，一行内可写多条语句  
+print "123" # 如果一行一条语句的话，不需要分号结束
+
+（3）输出Output 
+print "Hi\trensanning" # 调用to_s方法输出，但不换行
+puts  "Hi\trensanning"  # 调用to_s方法输出，但末尾换行
+p "Hi\trensanning"  # 调用inspect方法输出，等价于puts
+print "Hello", " World\n" # 支持多个参数，多项目输出
+
+（4）语句Statements 
+value1 = 5 # 赋值语句	
+value2 = value3 = 10 # 连续赋值	
+sum = value1 + value2 \	# 默认换行为语句结束，可采用“\”来折行输入语句	
+      + value3																
+x = 0																
+x += 2																
+x *= 2  # x = x * 2
+
+（5）数据类型Data Types 
+a = 123 # Numeric数值　a.class 为 Fixnum
+b = "abc" # String字符串  b.class 为 String
+c = [1, 2, 3] # Array数组 c.class 为 Array（c[0] == c[-3] == 1）
+d = {100 => "perfect", "absent" => 0} # Hash散列 d.class 为 Hash（d[100] == "perfect"）
+e = 1..2 # Range范围 e.class 为 Range
+f = false # Boolean布尔型 f.class 为 FalseClass
+value = nil  # Nil
+
+（6）变量Variables 
+VAR  = "常量" # 大写字母开头  
+$var = "全局变量" # '$' 开头  
+def func                                                              
+  var = "局部变量" # 小写字母或下划线开头  
+end                                                           
+class Class                                                           
+  @@var = "类变量" # '@@' 开头  
+  def initialize                                                              
+    @var = "实例变量" # '@' 开头  
+  end                                                             
+end
+# Ruby中的常量并不是真正的常量，是可以被重新赋值的(会有警告)  
+FOO = "hello"  
+FOO = "world"  
+(irb):8: warning: already initialized constant FOO  
+(irb):7: warning: previous definition of FOO was here  
+p FOO  
+=> "world"  
+
+（7）操作符Operators
+a = 100 # 赋值运算
+a = (1 + 2) / (3 - 4) * 5 # 四则运算
+a = (1 && 2) and (3 || 4) or !(5) # 逻辑运算
+a = 7 % 2 # 取余数
+a = (1 == 2) or (3 != 4) or (5 < 6) or (7 <= 8) # 比较运算
+a > 5 ? puts(a) : "oh no" # 三元操作符
+a, b = 10, 20 # 多值赋值
+a, b, c = "a", "b", "c"   # a="a"; b="b"; c="c"
+a, b, c = "a", "b"        # a = "a"; b = "b" ; c= nil
+a, b = "a", "b", "c"      # a = "a"; b = "b"
+a, b = b, a               # tmp = a ; a = b ; b = tmp
+a = ["a", "b", "c"]       # a = ["a","b","c"]
+a, b = ["a", "b", "c"]    # a = "a"; b = "b"
+a, b, c = ["a", "b"]      # a = "a"; b = "b" ; c= nil
+number ||= 1 # ||=赋值
+number = 1 if number.nil?
+number = 1 unless number
+# 区分== 、equal?、===、eql? 的不同
+
+（8）控制语句Control Loop 
+# if 语句
+if a > 5 then puts a end  # 一行版
+puts a if a > 5  # 条件后置
+# unless 语句
+# case 语句
+case name
+when "jack" then "i am rose"
+when "rose" then "jack i miss u"
+else "get out from here"
+end
+# while 语句
+while i > 5 do
+  i -= 1
+end
+i -= 1 while i > 5
+# until 语句
+until i <= 5 do
+  i -= 1
+end
+i -= 1 until i<= 5
+# for 语句
+for x in [1,2,3]
+  puts x
+end
+# loop语句（无限循环）
+loop do
+  puts "continue" # break、next、redo、retry
+end
+# times/upto/downto 方法
+
+（9）字符串String 
+'Some\tString' # 单引号不转义特殊字符 Some\\tString
+"Some\tString" # 双引号转义特殊字符 Some\tString
+message = %q(Any string can be here) # 等价于 "Any string can be here"
+message = %Q|Any string can be here|
+(("a" * 2) + "b") * 3 # 字符串的链接和重复 "aabaabaab"
+"abcdefg"[3 .. 5] # 取子串 "def"
+"abcdefg"[0,4] # 取子串 "abcd"
+"abcdefg"[-2,4] # 取子串 "fg"
+a = "abcdefg"
+a[3 .. 5] = "xyz" # 部分内容置换 "abcxyzg"
+1.to_s + 2.3.to_s + [4, 5].to_s # 通过to_s转化成字符串 "12.345"
+"12".to_i + "34".to_i # 通过to_i字符串转整数 46
+"a = #{a}" # 插入变量值
+"abcdefg".length # 文字列長
+"Split the sentence".split # 字符串分割 ["Split", "the", "sentence"]
+str = "Tokyo"
+str << ",Japan" # 字符串链接  "Tokyo,Japan"
+"Tokyo".concat(",Japan")
+"abcde".reverse # 字符串翻转 "edcba"
+"abccabbcabbbccba".gsub(/ab+/, "xy") # 通过正则表达是替换内容 "xyccxycxyccba"
+# 在Java或Python语言中，字符串是不可变的。在Ruby中字符串和数组一样是可变的。
+
+（10）数值Number
+a = 10          # 整数 Fixnum
+b = 9999999999  # 大整数 Bignum 
+c = 3.14        # 浮点数 Float
+
+d1 = 214        # 默认是10进制数
+d2 = 0b11010110  # 以0b开头的是2进制数
+d3 = 0326        # 以0开头的是8进制数
+d4 = 0xD6        # 以0x开头的是16进制数
+
+e = 3_420_500    # 通过下划线定义数字  3420500
+
+f = 5.01e4       # 科学计数法 50100.0
+
+# 数值的比较方法
+value = 100
+value.zero?           # false
+value.nonzero?        # 100
+value.integer?        # true
+value.even?           # true
+value.odd?            # false
+value.between?(0,10)  # false
+
+# 数值的数学方法
+value = 100.14
+value.ceil     # 101
+value.floor    # 100
+value.round    # 100
+value.truncate # 100
+quotient, remainder = 5.divmod 3 # 取商和余数 [1,2]
+quotient = 5.div(3)
+remainder = 5.modulo(3)
+price = 6.5
+r = "%.2f" % price # 格式化输出数字 "6.50"
+# 生成随机数
+rand          # 默认是0到1
+rand 100      # 0..100
+srand 3341    # 设置种子
+
+（11）数组Array 
+a = [1, 3, 4, 5, 7]     # 创建数组
+b = 2, 3, 5, 7, 9       # 中括号可省 （多值赋值）
+
+colors = %w(red green blue )  # 通过String列表生成数组 ["red", "green", "blue"]
+
+array = [2005, 2006, 2007, 2008]
+array[0]　　　　　　# 取数组的值 2005
+array.at(0)
+
+array.size        # 数组的大小 4
+
+a | b             # 数组的和集 [1, 3, 4, 5, 7, 2, 9]
+a & b             # 数组的交集 [3, 5, 7]
+
+a + b             # 数组连接 [1, 3, 4, 5, 7, 2, 3, 5, 7, 9]
+a - b             # 数据的差（去重） [1, 4]
+
+a.shift           # 取出第一个元素并从数组中删除该元素
+# a = [3, 4, 5, 7]
+
+a.join("/")  # 按指定字符将数据连成字符串 "3/4/5/7"
+
+a << 6 # 在数组末尾添加元素 [3, 4, 5, 7, 6]
+
+(a | b).sort  # 数组排序 [2, 3, 4, 5, 6, 7, 9]
+
+a.map { |i| i * i } # 遍历修改数组元素  [9, 16, 25, 49, 36]
+
+（12）散列Hash 
+hash = {"Yamada" => 34, "Katou" => 28, "Endou" => 18} # 生成散列对象
+h = Hash["suzuki", 87, "itou", 76, "yamada", 69] # 通过数组生成散列
+
+hash = { :foo => true } # 冒号 与 =>的区别
+hash = { foo: true } # Ruby1.9引入冒号，注意冒号左侧没有空格
+hash = { "foo" => true }
+hash = { "foo-1" => true }    
+hash = { :foo : true } # NG  
+hash = { "foo" : true } # NG  
+hash = { :foo-1 => true } # NG  
+hash = { foo-1 => true } # NG  
+
+hash["Katou"] # 获取散列中的值
+hash.fetch("Katou")
+
+hash = {"Lemon" => 100, "Orange" => 150}
+hash["Lemon"] = 120 # 修改散列中的值
+hash["Banana"] = 90 # 往散列中添加元素
+
+hash.store("Lemon", 120)
+hash.store("Banana", 190)
+
+hash.length # 散列的大小
+hash.size
+
+h = {"suzuki" => 87, "itou" => 76, "yamada" => 69}
+h.delete("itou") # 删除散列的元素
+
+h = {"suzuki" => 87, "itou" => 76, "yamada" => 69}
+h.clear # 清空散列的所有元素
+
+array = hash.keys # 散列键的数组
+array = hash.values # 散列值的数组
+array = hash.to_a # 散列键值的数组
+
+（13）符号Symbol 
+# 字符串是可变的，符号是不可变的。
+
+x = :my_str
+y = :my_str  #x和y的object_id相同
+
+x = "my_str"
+y = "my_str"  #x和y的object_id不同
+
+hash = { :name => "rensanning", :city => "dalian"}  # 作为哈希表的 key
+hash[:name]
+
+class SomeClass  
+  attr_accessor :whatever  # 类的实例变量
+end 
+
+class SomeClass  
+  def whatever  
+    @whatever  
+  end  
+  def whatever=(val)  
+    @whatever = val  
+  end  
+end
+
+North, South, East, West = :north, :south, :east, :west  # 枚举类型
+
+def some_keyword_params( params )  # 关键字参数
+  params
+end
+some_keyword_params( :param_one => 10, :param_two => 42 )
+
+（14）集合Collections 
+1..5                    # Ranges 有序的数字
+['a', 1, 'c']           # Arrays 有序的List
+{:a => 'a', :b => 'b' } # Hashes 键值对
+Set['a', 'b', 'c']      # Sets 不重复的集合 require 'set'
+
+（15）方法Method 
+def printHello(name)              # 方法的定义
+  print("Hello, #{name}")
+end
+
+printHello("rensanning")           # 调用方法
+printHello "rensanning"            # 括号可以省略
+
+p hoge()                           # NG NoMethodError
+def hoge()
+  return 'hoge'
+end
+
+def hoge()
+  return 'hoge'
+end
+p hoge()# 方法的定义必须在调用之前
+
+Math.sin(2)                         # 调用module的方法
+
+def addString(str)
+  return str + ",Japan"             # 方法的返回值
+end
+def addString(str)
+  str + ",Japan"                    # 最后一条语句的执行结果就是返回值
+end
+
+addString("Tokyo")
+
+def printHello(msg="No msg", name="No name")   # 参数的默认值
+  print(msg + "," + name + "¥n")
+end
+
+printHello()
+
+def printHello(msg, *names)   # 以数组形式接收可变参数
+  names.each do |name|
+    print(msg + "," + name + "¥n")
+  end
+end
+
+printHello("Hello")
+printHello("Hello", "Yamada")
+printHello("Hello", "Yamada", "Endou")
+
+def keisan(num1, num2)
+  return num1 + num2, num1 - num2   # 返回多个值用于多值赋值
+end
+plus, minus = keisan(10, 25)
+if book.respond_to?(request)   # respond_to?判断是否定义了某个方法
+  puts book.send(request)      # send调用某个方法
+else
+  puts "Input error"
+end
+String upcase/upcase!          # !号结束的方法一般都会修改原变量的值
+Arrays sort/sort!
+# 只有overriding没有overloading
+
+（16）代码块Code Block 
+values.each { |x| print x }   # 代码块在一行内时，用大括号括起来
+values.each { |x|   # 多行时使用{}
+   print x
+}
+values.each do |x|  # 多行时使用do...end
+   print x
+end
+
+block = lambda { |x| puts x } # 创建代码块（lambda{} Proc.new{}）并调用
+block.call "Hello World!"
+
+def call_twice# 接受代码块并调用
+  puts "I'm about to call your block."
+  yield
+  puts "I'm about to call your block again."
+  yield
+end
+call_twice { puts "Hi, I'm a talking code block." }
+
+def repeat (n, &block)           # 代码块参数
+  n.times { block.call } if block
+end
+repeat(2) { puts "Hello." }
+
+def add_to_call(array, number)    # 闭包代码块
+  array.collect { |x| x + number }
+end
+add_to_call([1,2,3], 10) 
+
+（17）迭代Iterator 
+str = "test"
+str.each_char do |c|               # 字符串的迭代
+   puts c
+end
+
+range = 5..10
+range.each do |num|                 # 范围对象的迭代
+  puts "num = ", num
+end
+
+a = [1, 10, 100]
+a.each do |i|                       # 数组的迭代
+  puts i
+end
+
+a = {"Father" => 50, "Mother" => 48, "Son" => 20}
+a.keys.each do |i|   # 按键迭代散列 a.values为值得数组
+  puts i, ":", a[i], "\n"
+end
+
+hash = {"key" => "vall", "key2" => "val2"}
+hash.each do |k,v| # 按键值迭代散列
+  puts "#{k} is #{v}/n"
+end
+
+(1..5).each_with_index {|x,i| print x, "-", i, " "}   # 迭代时带上索引 1-0 2-1 3-2 4-3 5-4
+
+# 还有.map .select .reject .inject等方法
+
+
+（18）类的基本概念 
+class Car     # 定义类
+end
+
+car1 = Car.new() # 生成对象
+car2 = Car.new
+
+class Car
+  def initialize(carname="None")   # 初期化方法
+    @name = carname
+  end
+end
+
+car1 = Car.new("civic")    # new方法创建类对象并调用initialize方法
+car2 = Car.new()
+
+class Car
+   def name=(v)# setter
+     @name = v
+   end
+   def name # getter
+       @name
+   end
+end
+
+q = Car.new
+q.name = "QQ"
+q.name
+
+# 成员变量的访问控制
+class Car
+  def initialize(carname="None") # attr_reader 只读
+    @name = carname              # attr_writer 只写
+  end                            # attr_accessor 可读可写
+  
+  attr_accessor :name
+end
+
+car = Car.new()
+car.name = "civic"
+print(car.name)
+
+class Car  # 定义类的常量
+  NAME = "name"
+end
+
+p Car::NAME # 调用类的常量
+
+# 类的命名空间
+module Foo
+  class Bar
+    def say
+      p "Hi"
+    end
+  end
+end
+
+Foo::Bar.new.say
+
+（19）类的继承 
+# 继承 Ruby不支持多继承
+class Car
+  def accele
+    print("accele")
+  end
+end
+class Soarer < Car
+  def open_roof
+    print("open_roof")
+  end
+end
+
+# 调用父类的方法
+class Car
+  def accele(acceletime)
+    print(acceletime, "Car's accele")
+  end
+end
+class Soarer < Car
+  def accele(acceletime)
+    super(acceletime)
+    print("Soarer's accele")
+  end
+end
+
+（20）类的访问控制 
+class Car
+  public # 此行以下到下一个控制符间均为public方法
+         # 默认所有方法除过initialize都是public，可省
+  def accele(acceletime=1)
+    print("Car's accele¥n")
+  end
+
+  private           # 此行以下均为private方法
+
+  def calcSpeed(acceletime)
+    return acceletime * 10
+  end
+end
+
+（21）类的方法 
+# Ruby不支持method overload
+# 类中只能有一个方法名相同的方法。
+# 对于方法重载需要依据参数。
+# 星号用于接受可变参数
+class Rectangle
+  def inititalize(*args)
+    case args.size
+    when 2  
+       //TODO    
+    else
+       //TODO    
+    end
+  end
+end
+
+class Test
+  def self.class_method1 # 定义类级别的方法
+    puts "hello1"
+  end
+  def Test.class_method2
+    puts "hello2"
+  end
+end
+
+class Car # 定义对象方法
+  def inspect
+    "Cheap car"
+  end
+end
+
+porsche = Car.new
+porsche.inspect # 修改前 Cheap car
+def porsche.inspect
+  "Expensive car"
+end
+porsche.inspect # 修改后 Expensive car
+other_car = Car.new
+other_car.inspect # 对于其他的对象 不受影响=> Cheap car
+
+def method_missing( id, *arguments )# 定义类的Missing methods
+  puts "Method #{id} was called, but not found. It has " +
+       "these arguments: #{arguments.join(", ")}"
+end
+
+（22）开放类Open Class（又称猴子补丁Monkey Patch）
+# 允许在任何地方给已经存在的类添加或修改方法，不管是自定义的类还是ruby本身的基础类。
+
+"123".ren  # NoMethodError
+
+class String
+ def ren
+   puts "rensanning"
+  end
+end
+
+"123".ren  # rensanning
+
+（23）鸭子类型Duck Typing （行为决定类型） 
+引用
+When I see a bird that walks like a duck and swims like a duck and quacks like a duck, I call that bird a duck. 
+当看到一只鸟走起来像鸭子、游泳起来像鸭子、叫起来也像鸭子，那么这只鸟就可以被称为鸭子。
+class Duck  
+  def quack  
+    'Quack!'  
+  end  
+  
+  def swim  
+    'Paddle paddle paddle...'  
+  end  
+end  
+  
+class Goose  
+  def honk  
+    'Honk!'  
+  end  
+  def swim  
+    'Splash splash splash...'  
+  end  
+end
+
+def make_it_swim(duck)  
+  duck.swim  
+end  
+puts make_it_swim(Duck.new)    #Paddle paddle paddle…
+puts make_it_swim(Goose.new)   #Splash splash splash…
+
+
+（24）动态定义方法 
+class Conjure
+  def self.conjure(name, lamb)
+    define_method(name, lamb)
+  end
+end
+
+Conjure.conjure(:glark, ->{ (3..5).to_a * 2 })
+
+Conjure.new.glark #=> [3, 4, 5, 3, 4, 5]  
+
+
+（25）异常Exception 
+# 抛出异常
+def bad_call(n)
+  raise "Bad call 0" if n==0
+end
+
+# 捕获异常
+def handle_bad_call
+  begin
+    bad_call 5
+  rescue Exception => ex
+    puts ex.message# Print exception message
+    puts ex.backtrace            # 打印backtrace
+  else
+    puts "no exception"          # 没有异常时执行
+  ensure
+    puts "always execute"        # 不管是否有异常都执行
+  end
+end
+
+# Retry
+def handle_bad_call
+  max = 0
+  begin
+    max += 1
+    bad_call 0
+  rescue
+    puts "error handled"
+    if (max<5) then retry end    # 从begin开始Retry
+  end
+end
+
+
+（26）模块Module
+# 没有interface,只有比interface更强大的module与mixin
+# Mixin 方法（通过 include 其他模块而得到的方法，实现多重继承的效果）
+
+# 定义模块
+module HeikinModule
+  def heikin(x, y)
+     (x + y) / 2
+  end
+end
+
+# mixin 包含模块
+class Test
+  include HeikinModule
+
+  def dispHeikin(x, y)
+    kekka = heikin(x, y)
+    print("AVG(", x, " , ", y, ") = ", kekka)
+  end
+end
+
+test = Test.new
+test.dispHeikin(10, 8)
+
+# Include和Extend的区别
+module Foo
+  def foo
+    puts 'heyyyyoooo!'
+  end
+end
+
+class Bar
+  include Foo # include混入为实例方法
+end
+
+Bar.new.foo # heyyyyoooo!
+Bar.foo # NoMethodError
+
+class Baz
+  extend Foo # extend混入成为类方法
+end
+
+Baz.foo # heyyyyoooo!
+Baz.new.foo # NoMethodError
+
+# 模块方法
+module SuuchiModule
+  def maxValue(x, y)
+    if x > y
+      return x
+    else
+      return y
+    end
+  end
+
+  module_function :maxValue
+end
+
+SuuchiModule.maxValue(10, 8)
+
+# 模块常量
+module Math
+  PI = 3.14
+end
+
+Math::PI
+
+# 模块命名空间
+module Foo
+  module Bar
+    def self.say
+      p "Hi"
+    end
+  end
+end
+
+Foo::Bar.say
+
+# 单例模块
+module Item
+  extend self
+  
+  def name
+    p "i'm item"
+  end
+end
+
+Item.name
+
+（27）类和模块的区别 
+# 1、定义方式不同 class XX ... end， module YY ... end
+# 2、类可以继承，模块不可以
+# 3、类可以实例化(new)，模块不可以
+# 4、模块可以Mixin（include,extend），类不可以
+# 5、类都是Class类的对象，模块都是Module类的对象
+
+（28）Time类
+# 初期化一个Time对象
+Time.new        # 生成一个Time对象
+Time.now        # 当前系统时间
+Time.local 2009, 10, 1, 3, 54  # 2009 10/1 3:54
+Time.local 2009, 10, 1# 2009 10/1
+Time.utc 2009, 10, 1, 3, 54    # 使用UTC时间
+
+# 解析日期字符串
+require 'parsedate'
+include ParseDate
+
+text = "2009-11-12 04:05:00"
+value = parsedate(text)  # [2009, 11, 12, 4, 5, 0, nil, nil]
+t = Time.local(*value)   # 初期化一个Time对象
+
+# 读取日期的各个字段
+t.year    # 2009
+t.month   # 11
+t.day     # 12
+t.wday    # 4: day of week: 0 is Sunday
+t.yday    # 316: day of year
+t.hour    # 4: 24-hour clock
+t.min     # 5
+t.sec     # 0
+t.zone    # 时间带timezone
+
+# arithmetic functions
+t = Time.now
+values = t.to_a   # [sec,min,hour,day,month,year,wday,yday,isdst,zone]
+
+values[5] += 1           #  年加1
+t = Time.local(*values)  # 设置时间
+
+# 前后推算
+now = Time.now           # 当前时间
+past   = now - 10        # 10秒前
+future = now + 10
+
+past - now          # -10.0
+sec = Time.now.to_i # 秒数
+t = Time.at(sec)    # 转回time对象
+
+# 比较
+past <=> future         # -1: 小于, 0 相等, 1 大于
+past < future           # true
+now == now              # true
+
+# 转成字符串
+t = Time.now
+t.to_s                          # "2013-08-07 09:56:23 +0800"
+
+# 格式化输出
+t.strftime("%Y-%m-%d %H:%M:%S") # "2009-09-23 19:56:30"
+t.strftime("%H:%M")             # "19:56"
+t.strftime("%I:%M %p")          # "07:56 PM"
+
+（29）Date/DateTime类
+require "date"
+
+d1 = Date.new(2007, 5 ,30) # 2007年5月30日
+d2 = DateTime.new(2007, 5 ,30, 16, 20, 45, 0.375) # 2007年5月30日16時20分45秒
+
+dt = Date.today   # 今天
+dn = DateTime.now # 现在时刻
+
+day1 = Date.new(2007, 5 , -1) # 月底日期
+day2 = Date.new(2007, 5 , -2) # 月底的前一天
+
+
+
+
+
