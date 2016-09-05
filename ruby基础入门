@@ -1,4 +1,4 @@
-Ruby：面向对象、开源、动态类型、强类型、解释型的脚本语言。
+﻿Ruby：面向对象、开源、动态类型、强类型、解释型的脚本语言。
 （1）注释Comment 
 print "Hello world\n" # 单行注释  
   =begin  
@@ -786,6 +786,14 @@ dn = DateTime.now # 现在时刻
 
 day1 = Date.new(2007, 5 , -1) # 月底日期
 day2 = Date.new(2007, 5 , -2) # 月底的前一天
+
+irb(main):018:0> Time.new      时间
+=> 2016-09-05 17:13:47 +0800
+irb(main):019:0> Time.now      时间
+=> 2016-09-05 17:13:55 +0800
+irb(main):020:0> Time.now.to_i  unix时间戳
+=> 1473066840
+
 
 
 
