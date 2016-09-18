@@ -76,6 +76,11 @@ number = 1 unless number
 
 （8）控制语句Control Loop 
 # if 语句
+&&与  ||或  ! 非
+if a >1 && b <3; then ......end
+if a >1 || a<3; then ......end
+if a ! 0 ; then......end
+
 if a > 5 then puts a end  # 一行版
 puts a if a > 5  # 条件后置
 # unless 语句
@@ -241,6 +246,8 @@ y = :my_str  #x和y的object_id相同
 x = "my_str"
 y = "my_str"  #x和y的object_id不同
 
+aa={id:"1",name:"suns"}
+
 hash = { :name => "rensanning", :city => "dalian"}  # 作为哈希表的 key
 hash[:name]
 
@@ -300,14 +307,14 @@ end
 addString("Tokyo")
 
 def printHello(msg="No msg", name="No name")   # 参数的默认值
-  print(msg + "," + name + "¥n")
+  print(msg + "," + name + "￥n")
 end
 
 printHello()
 
 def printHello(msg, *names)   # 以数组形式接收可变参数
   names.each do |name|
-    print(msg + "," + name + "¥n")
+    print(msg + "," + name + "￥n")
   end
 end
 
@@ -479,7 +486,7 @@ class Car
   public # 此行以下到下一个控制符间均为public方法
          # 默认所有方法除过initialize都是public，可省
   def accele(acceletime=1)
-    print("Car's accele¥n")
+    print("Car's accele￥n")
   end
 
   private           # 此行以下均为private方法
