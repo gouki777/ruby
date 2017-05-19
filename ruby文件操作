@@ -124,5 +124,14 @@ Find.find("/etc/passwd",".") do |f|
  Find.prune if f == "."
 puts f
 end
+15.文件判断 判断是否存在
+if File.exist?("./123/test")
+  Dir.rmdir("./123/test")
+else
+  Dir.mkdir("./123/test")
+end
+16. cmp 文件比较
+FileUtils.cmp("F:\\test1.rb", "F:\\test2.rb") 
+# 比较两个文件是否相同，返回 true 或者 false
 
 

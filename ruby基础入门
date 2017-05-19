@@ -801,6 +801,11 @@ irb(main):019:0> Time.now      时间
 irb(main):020:0> Time.now.to_i  unix时间戳
 => 1473066840
 
+ruby执行linux系统命令
+1.system('echo "hello $HOSTNAME"') 
+2.system "pwd"
+3.name1=`pwd`
+
 
 
 
