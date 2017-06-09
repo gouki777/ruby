@@ -14,3 +14,13 @@ filename = ARGV[1]                  #需要搜索的文件
  end
 
 simple_grep(pattern, filename)      #调用方法
+
+
+#对比2个文件去重对比，取不重复 #split数组分割为空格，变文本变成数组
+a=`cat /tmp/222`
+b=`cat /tmp/111`.split
+puts a.split - b
+#另一种对比方式每行遍历，取不重复数据 注：1.9新功能才有lines 1.9以下只能用split
+a=`cat /tmp/222`
+b=`cat /tmp/111`
+puts (b.lines - a.lines)
