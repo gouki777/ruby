@@ -1,40 +1,40 @@
-"r" £ºRead-only. Starts at beginning of file (default mode).
-"r+" £ºRead-write. Starts at beginning of file.
-"w" £ºWrite-only. Truncates existing file to zero length or creates a new file for writing.
-"w+" £ºRead-write. Truncates existing file to zero length or creates a new file for reading and writing.
-"a" £ºWrite-only. Starts at end of file if file exists; otherwise, creates a new file for writing.
-"a+" £ºRead-write. Starts at end of file if file exists; otherwise, creates a new file for reading and writing.
-"b" £º(DOS/Windows only.) Binary file mode. May appear with any of the key letters listed above
+"r" ï¼šRead-only. Starts at beginning of file (default mode).
+"r+" ï¼šRead-write. Starts at beginning of file.
+"w" ï¼šWrite-only. Truncates existing file to zero length or creates a new file for writing.
+"w+" ï¼šRead-write. Truncates existing file to zero length or creates a new file for reading and writing.
+"a" ï¼šWrite-only. Starts at end of file if file exists; otherwise, creates a new file for writing.
+"a+" ï¼šRead-write. Starts at end of file if file exists; otherwise, creates a new file for reading and writing.
+"b" ï¼š(DOS/Windows only.) Binary file mode. May appear with any of the key letters listed above
 
-1.ĞÂ½¨ÎÄ¼ş+Ğ´Èë
+1.æ–°å»ºæ–‡ä»¶+å†™å…¥
 f=File.new(File.join(".","222.txt"),"w+")
 f.puts("i am syf.")
 f.puts("Hello world.")
 f.close
 
 
-2.¶ÁÈ¡ÎÄ¼ş
+2.è¯»å–æ–‡ä»¶
 f=File.open(File.join(".","222.txt"),"r")
  f.each { |line| print "#{f.lineno}.", line }
 f.close
 
-3.ĞÂ½¨¡¢ÖØÃüÃûÎÄ¼ş¡¢É¾³ı
+3.æ–°å»ºã€é‡å‘½åæ–‡ä»¶ã€åˆ é™¤
 File.new("books.txt","w")
 File.rename("books.txt","123.txt")
 File.delete("123.txt")
-¶ş.Ä¿Â¼²Ù×÷
-1.´´½¨Ä¿Â¼
+äºŒ.ç›®å½•æ“ä½œ
+1.åˆ›å»ºç›®å½•
 Dir.mkdir("3333")
-2.É¾³ıÄ¿Â¼
+2.åˆ é™¤ç›®å½•
 Dir.rmdir("3333")
-3.²éÑ¯Ä¿Â¼ÀïµÄÎÄ¼ş
+3.æŸ¥è¯¢ç›®å½•é‡Œçš„æ–‡ä»¶
 p Dir.entries(File.join("C:","Ruby")).join(' ') 
-4.±éÀúÄ¿Â¼
+4.éå†ç›®å½•
 Dir.entries(File.join("C:","Ruby")).each {
     |e| puts e
     }
 
-1¡¢ARGV and ARGF
+1ã€ARGV and ARGF
 ARGV
     ARGV << "cnblogslink.txt"
     #The gets method is a Kernel method that gets lines from ARGV
@@ -45,93 +45,93 @@ ARGF
     while line = ARGF.gets
      print line
     end
-Èı.ÎÄ¼şĞÅÏ¢²éÑ¯
-1.ÎÄ¼şÊÇ·ñ´æÔÚ
+ä¸‰.æ–‡ä»¶ä¿¡æ¯æŸ¥è¯¢
+1.æ–‡ä»¶æ˜¯å¦å­˜åœ¨
 irb(main):001:0> File::exists?("3.rb")
 => true
-2.ÎÄ¼şÊÇ·ñÊÇÎÄ¼ş
+2.æ–‡ä»¶æ˜¯å¦æ˜¯æ–‡ä»¶
 irb(main):001:0> File.file?("3.rb")
 => true
-3.ÊÇ·ñÊÇÄ¿Â¼
+3.æ˜¯å¦æ˜¯ç›®å½•
 irb(main):002:0> File::directory?( "/ruby" )
 => true
-4.ÎÄ¼şÈ¨ÏŞ
+4.æ–‡ä»¶æƒé™
 irb(main):010:0> File.readable?("3.rb")
 => true
 irb(main):011:0> File.writable?("3.rb")
 => true
 irb(main):012:0> File.executable?("3.rb")
 => false
-5.ÊÇ·ñÊÇÁã³¤¶È
+5.æ˜¯å¦æ˜¯é›¶é•¿åº¦
 irb(main):013:0> File.zero?("3.rb")
 => false
-6.ÎÄ¼ş´óĞ¡ bytes
+6.æ–‡ä»¶å¤§å° bytes
 irb(main):014:0> File.size?("3.rb")
 => 110
-7.ÎÄ¼ş»òÎÄ¼ş¼Ğ
+7.æ–‡ä»¶æˆ–æ–‡ä»¶å¤¹
 irb(main):001:0> File.ftype("3333")
 => "directory"
 irb(main):019:0> File.ftype("3.rb")
 => "file"
-8.ÎÄ¼ş´´½¨¡¢ĞŞ¸Ä¡¢×îºóÒ»´Î´æÈ¡Ê±¼ä
+8.æ–‡ä»¶åˆ›å»ºã€ä¿®æ”¹ã€æœ€åä¸€æ¬¡å­˜å–æ—¶é—´
 irb(main):004:0> File::ctime("001.rb")
 => 2016-05-03 22:51:12 +0800
 irb(main):005:0> File::mtime("001.rb")
 => 2016-05-03 22:51:12 +0800
 irb(main):001:0> File::atime("001.rb")
 => 2016-06-14 16:09:25 +0800
-9.±éÀúÄ¿Â¼ÏÂËùÓĞÎÄ¼ş¼°ÎÄ¼ş¼Ğ [×ÓÄ¿Â¼ÏÂ²»Ëã]
+9.éå†ç›®å½•ä¸‹æ‰€æœ‰æ–‡ä»¶åŠæ–‡ä»¶å¤¹ [å­ç›®å½•ä¸‹ä¸ç®—]
 [root@redmine ruby]# cat 006.rb 
 # -*- coding: UTF-8 -*-
-puts "³¬ÕÒÄ¿Â¼ÏÂËùÓĞÎÄ¼ş¼°ÎÄ¼ş¼Ğ"
+puts "è¶…æ‰¾ç›®å½•ä¸‹æ‰€æœ‰æ–‡ä»¶åŠæ–‡ä»¶å¤¹"
 Dir["/ruby/*"].each { |x|
  puts x
 }
-10.Ìõ¼ş²éÑ¯
-puts "Ìõ¼ş²éÑ¯"
+10.æ¡ä»¶æŸ¥è¯¢
+puts "æ¡ä»¶æŸ¥è¯¢"
 Dir.foreach('/ruby/test1') { |x| 
  puts x if x !="." && x !=".."
  }
-11.²éÕÒÄ³Ò»ÀàĞÍÎÄ¼ş £¨ÕıÔò£©
-puts "²éÕÒÄ³Ò»ÀàĞÍÎÄ¼ş"
+11.æŸ¥æ‰¾æŸä¸€ç±»å‹æ–‡ä»¶ ï¼ˆæ­£åˆ™ï¼‰
+puts "æŸ¥æ‰¾æŸä¸€ç±»å‹æ–‡ä»¶"
 Dir["*.rb"].each {|x| 
       puts x
      }
-12.±éÀú/rubyÄ¿Â¼ÏÂËùÓĞÎÄ¼ş£¬ÎÄ¼şÃû×Öº¬ÓĞ00µÄÎÄ¼ş
+12.éå†/rubyç›®å½•ä¸‹æ‰€æœ‰æ–‡ä»¶ï¼Œæ–‡ä»¶åå­—å«æœ‰00çš„æ–‡ä»¶
 # -*- coding: UTF-8 -*-
-puts "open ²éÑ¯"
+puts "open æŸ¥è¯¢"
 Dir.open('/ruby') { |d| d.grep /00/ }.each { |x| 
  puts x 
 }
-13.ÕıÔò±í´ïÊ½²éÑ¯ ±éÀú°üº¬12µÄÎÄ¼şÃû
+13.æ­£åˆ™è¡¨è¾¾å¼æŸ¥è¯¢ éå†åŒ…å«12çš„æ–‡ä»¶å
 # -*- coding: UTF-8 -*-
-puts "ÕıÔò±í´ïÊ½²éÑ¯"
+puts "æ­£åˆ™è¡¨è¾¾å¼æŸ¥è¯¢"
 Dir["/ruby/[12]*"].each{ |x| 
  puts x
 }
-±éÀúÄ¿Â¼ÒÔex¿ªÍ·µÄ
+éå†ç›®å½•ä»¥exå¼€å¤´çš„
 Dir["[^ex]*"].each{ |x| puts x }
-±éÀúÄ¿Â¼00ºÍ123µÄÎÄ¼şÃû
+éå†ç›®å½•00å’Œ123çš„æ–‡ä»¶å
 Dir["/ruby/{00,123}*"].each{ |x| puts x }
-±éÀúÎÄ¼şµÚ¶ş¸ö×ÖÄ¸ÎªxµÄÎÄ¼ş
+éå†æ–‡ä»¶ç¬¬äºŒä¸ªå­—æ¯ä¸ºxçš„æ–‡ä»¶
 Dir["/ruby/?x*"].each{ |x| puts x }
-14.±éÀúµ±Ç°Ä¿Â¼¼°×ÓÄ¿Â¼ËùÓĞÎÄ¼ş
+14.éå†å½“å‰ç›®å½•åŠå­ç›®å½•æ‰€æœ‰æ–‡ä»¶
 require 'find'
 Find.find ('./') { |path| puts path }
-15.²éÑ¯Ä¿Â¼¼°×ÓÄ¿Â¼ÎÄ¼ş
+15.æŸ¥è¯¢ç›®å½•åŠå­ç›®å½•æ–‡ä»¶
 require "find"
 Find.find("/etc/passwd",".") do |f|
  Find.prune if f == "."
 puts f
 end
-15.ÎÄ¼şÅĞ¶Ï ÅĞ¶ÏÊÇ·ñ´æÔÚ
+15.æ–‡ä»¶åˆ¤æ–­ åˆ¤æ–­æ˜¯å¦å­˜åœ¨
 if File.exist?("./123/test")
   Dir.rmdir("./123/test")
 else
   Dir.mkdir("./123/test")
 end
-16. cmp ÎÄ¼ş±È½Ï
+16. cmp æ–‡ä»¶æ¯”è¾ƒ
 FileUtils.cmp("F:\\test1.rb", "F:\\test2.rb") 
-# ±È½ÏÁ½¸öÎÄ¼şÊÇ·ñÏàÍ¬£¬·µ»Ø true »òÕß false
+# æ¯”è¾ƒä¸¤ä¸ªæ–‡ä»¶æ˜¯å¦ç›¸åŒï¼Œè¿”å› true æˆ–è€… false
 
 
