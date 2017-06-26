@@ -1,26 +1,26 @@
 #!/usr/bin/ruby
-#require "./grep.rb"                #µ÷ÓÃrb #¿ÉÒÔ²»¼Ó.rb
-pattern = Regexp.new(ARGV[0])       #ĞèÒªËÑË÷µÄ±äÁ¿
-filename = ARGV[1]                  #ĞèÒªËÑË÷µÄÎÄ¼ş
+#require "./grep.rb"                #è°ƒç”¨rb #å¯ä»¥ä¸åŠ .rb
+pattern = Regexp.new(ARGV[0])       #éœ€è¦æœç´¢çš„å˜é‡
+filename = ARGV[1]                  #éœ€è¦æœç´¢çš„æ–‡ä»¶
 
- def simple_grep(pattern,filename)  #¶¨Òå·½·¨
-  file=File.open(filename)          #´ò¿ªÎÄ¼ş
-    file.each_line do |line|        #each_lineÖğĞĞËÑË÷£¬²»»áÒ»ÏÂ¶ÁÈ¡È«²¿
-      if pattern =~ line            #Æ¥Åä
+ def simple_grep(pattern,filename)  #å®šä¹‰æ–¹æ³•
+  file=File.open(filename)          #æ‰“å¼€æ–‡ä»¶
+    file.each_line do |line|        #each_lineé€è¡Œæœç´¢ï¼Œä¸ä¼šä¸€ä¸‹è¯»å–å…¨éƒ¨
+      if pattern =~ line            #åŒ¹é…
         puts line                  
       end
     end
- file.close                         #¹Ø±ÕÎÄ¼ş
+ file.close                         #å…³é—­æ–‡ä»¶
  end
 
-simple_grep(pattern, filename)      #µ÷ÓÃ·½·¨
+simple_grep(pattern, filename)      #è°ƒç”¨æ–¹æ³•
 
 
-#¶Ô±È2¸öÎÄ¼şÈ¥ÖØ¶Ô±È£¬È¡²»ÖØ¸´ #splitÊı×é·Ö¸îÎª¿Õ¸ñ£¬±äÎÄ±¾±ä³ÉÊı×é
+#å¯¹æ¯”2ä¸ªæ–‡ä»¶å»é‡å¯¹æ¯”ï¼Œå–ä¸é‡å¤ #splitæ•°ç»„åˆ†å‰²ä¸ºç©ºæ ¼ï¼Œå˜æ–‡æœ¬å˜æˆæ•°ç»„
 a=`cat /tmp/222`
 b=`cat /tmp/111`.split
 puts a.split - b
-#ÁíÒ»ÖÖ¶Ô±È·½Ê½Ã¿ĞĞ±éÀú£¬È¡²»ÖØ¸´Êı¾İ ×¢£º1.9ĞÂ¹¦ÄÜ²ÅÓĞlines 1.9ÒÔÏÂÖ»ÄÜÓÃsplit
+#å¦ä¸€ç§å¯¹æ¯”æ–¹å¼æ¯è¡Œéå†ï¼Œå–ä¸é‡å¤æ•°æ® æ³¨ï¼š1.9æ–°åŠŸèƒ½æ‰æœ‰lines 1.9ä»¥ä¸‹åªèƒ½ç”¨split
 a=`cat /tmp/222`
 b=`cat /tmp/111`
 puts (b.lines - a.lines)

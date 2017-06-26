@@ -1,6 +1,6 @@
 irb(main):008:0> bbb = 999.9   #
 => 999.9
-p bbb.round   #bbb.round 四舍五入取整
-p bbb.to_i    #整数变换
-p bbb.ceil    #进位
+p bbb.round   #bbb.round 鍥涜垗浜斿叆鍙栨暣
+p bbb.to_i    #鏁存暟鍙樻崲
+p bbb.ceil    #杩涗綅
 
